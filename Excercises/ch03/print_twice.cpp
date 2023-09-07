@@ -6,6 +6,8 @@ void print_twice(char phil) {
     cout << phil << phil << endl;
 }
 int main() {
-    print_twice(1);
+
+    double x = 3.14;
+    print_twice(x);
     return 0;
 }
