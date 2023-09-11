@@ -3,6 +3,10 @@
 using namespace std;
 
 void countdown(int n) {
+// to fix the infinite printing we should do:
+//  if (n <= 0) 
+//  return Blastoff!
+//  or maybe start adding to the negative values until its zero!  
 	if (n == 0) {
        	cout << "Blastoff!" << endl;
 	} 
