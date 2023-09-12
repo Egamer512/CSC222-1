@@ -15,6 +15,7 @@ void compare(int a, int b){
 		cout << a << " it's the same as " << b << endl;
 	}
 }
+
 bool check_if_number(char *a){
 	for (int i = 0, len_a = strlen(a); i < len_a; i++){
 		int part = a[i];
@@ -24,8 +25,9 @@ bool check_if_number(char *a){
 	}	
 	return false;
 }
+
 int main (int argc, char *argv[]){
-//I thought that it will be boring if the computer asked you for prompts
+//I thought that it will be boring to ask for user input so 
 	if (argc != 3){
 		cout << "Usage: ./compare int1 int2" << endl;
 		return 1;
@@ -33,7 +35,7 @@ int main (int argc, char *argv[]){
 
 	for (int i = 2; i > 0; i--){
 		if(check_if_number(argv[i])){
-			cout << "Usage:1./compare int1 int2" << endl;
+			cout << "Usage: ./compare int1 int2" << endl;
 			return 1;
 		}		
 	}
