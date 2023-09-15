@@ -36,6 +36,7 @@ int main (int argc, char *argv[]){
 		coords[i-1] = atoi(argv[i]);
         }
 
-	cout << distance(coords[0], coords[1], coords[2], coords[3]);
+	cout << distance(coords[0], coords[1], coords[2], coords[3]) << endl;
 	return 0;
 }
+
