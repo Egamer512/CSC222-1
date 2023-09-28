@@ -1,10 +1,10 @@
 #include <iostream>
-#include <bits/stdc++.h>
 #include <cmath>
 
 using namespace std;
-int reverse (int num){
-    int reversed_number = 0, remainder = 0, reversed_num = 0;
+long reverse (long num){
+    long reversed_number = 0, reversed_num = 0;
+    int remainder = 0;
     while (num != 0){
         remainder = num % 10;
         reversed_num = (reversed_num * 10) + remainder;
@@ -12,11 +12,11 @@ int reverse (int num){
     }
     return reversed_num;
 }
-int lychrel (int num){
+int lychrel (long num){
     
     for (int i = 1; i <= 10; i++){
         
-        int reversed = reverse(num);
+        long reversed = reverse(num);
         
         cout << "Iteration " << i << ":\t" << num;
         num += reversed;
@@ -31,7 +31,7 @@ int lychrel (int num){
 }
 int main(){
     cout << "Let's Check if you can find a Lychrel number after 10 iterations\n" << "Enter a number:";
-    int num;
+    long num;
     cin >> num;
     lychrel(num);
     return 0;
