@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
     // Ensure proper usage
     if (argc != 3)
     {
+        // outfile = a new file you are creating!
+        // infile = bmp file you already have
         printf("Usage: copy infile outfile\n");
         return 1;
     }
