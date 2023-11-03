@@ -3,7 +3,6 @@
 
 using namespace std;
 int num_options = 8;
-int MAX_USERS = 10;
 bool keep = true;
 struct User{
     string name;
@@ -24,8 +23,9 @@ struct Bank{
     void Newuser();
     void options();
     void Withdrawal();
-    int compare (string name, int code);
-    string check_val(string name);
+    void Deposit ();
+    int compare ();
+    
     int check_val(int code);
 };
 
@@ -40,8 +40,10 @@ void Bank::printbank(){
     int var = 0;
     cout <<" -- Your_ConfidenceBank123 -- "<< endl;
     
-    cout << "1." <<"\t" << "New_User" << endl;
-    cout << "2." <<"\t" << "Withdrawal" << endl;
+    cout << "1" << "\t" << "New_User" << endl;
+    cout << "2" << "\t" << "Withdrawal" << endl;
+    cout << "3" << "\t" << "Deposit" << endl;
+    cout << "4" << "\t" << "Transfer" << endl;
     cout << "choose an option from 1-" << num_options << endl;
 }
 void Bank::options(){
@@ -59,20 +61,12 @@ void Bank::options(){
     if (choose == 2 ){
         Withdrawal();
     }
+    if (choose == 3){
+        Deposit();
+    }
     cout << "\n" << endl;
 }
 
-string Bank::check_val(string name){
-    while (!(cin.good())){
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-        cout << "\nInvalid Values" << endl;
-        cout << "Name: ";
-        cin >> name;
-        
-    }
-    return name;
-}
 int Bank::check_val(int code){
     while ((!cin.good()) || int(log10(code)) != 2){
         cin.clear();
@@ -83,13 +77,14 @@ int Bank::check_val(int code){
     }
     return code;
 }
-int Bank::compare (string name, int code){
+int Bank::compare (){
+    string name;
+    int code;
     cout << "Name: ";
     cin >> name;
-    check_val(name);
     cout << "Code: ";
     cin >> code;
-    check_val(code);
+    code = check_val(code);
     int vec_size = user_list.size();
     for(int i = 0; i < vec_size; i++){
         if (user_list[i].name == name && user_list[i].code == code){
@@ -102,21 +97,28 @@ int Bank::compare (string name, int code){
     return -1;
     
 }
-bool exit(){
- return true;
-}
+
 void Bank::Withdrawal(){
-    int with_loop = 0;
-    string name;
-    int code, balance;
-    int v_index = compare(name,code);
+    int v_index = compare();
     if (v_index >= 0){
         int withdraw_amount;
         cout << "Total Balance: " << user_list[v_index].balance << endl;
         cout << "Amount to Withdraw: ";
         cin >> withdraw_amount;
         user_list[v_index].balance -= withdraw_amount;
-        cout << "Actual Total Balance: " <<user_list[v_index].balance << endl;
+        cout << "Actual Total Balance: " << user_list[v_index].balance << endl;
+    }
+    
+}
+void Bank::Deposit(){
+    int v_index = compare();
+    if (v_index >= 0){
+        int deposit_amount;
+        cout << "Total Balance: " << user_list[v_index].balance << endl;
+        cout << "Amount to Deposit: ";
+        cin >> deposit_amount;
+        user_list[v_index].balance += deposit_amount;
+        cout << "Actual Total Balance: " << user_list[v_index].balance << endl;
     }
     
 }
@@ -125,7 +127,6 @@ void Bank::Newuser(){
     int code, balance;
     cout << "Name: ";
     cin >> name;
-    name = check_val(name);
     cout << "Code: ";
     cin >> code;
     code = check_val(code);
