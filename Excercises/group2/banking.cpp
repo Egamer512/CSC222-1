@@ -1,37 +1,15 @@
-#include<iostream>
 #include "banking.h"
 
-using namespace std;
 int num_options = 7;
 bool keep = true;
-struct User{
-    string name;
-    int code;
-    int balance;
-    User(string n,int c, int b);
-};
+
 User::User(string n,int c, int b){
     name = n;
     code = c;
     balance = b;
 }
 
-struct Bank{
-    vector< User > user_list;
-    Bank();
-    void Exit();
-    void printbank();
-    void Newuser();
-    void options();
-    void Withdrawal();
-    void Deposit ();
-    void Transfer();
-    int get_user_indx ();
-    int check_code(int code);
-    void Close_Account();
-    void User_input(string& name, int& code);
-    void Print_accounts();
-};
+
 Bank::Bank(){
    while (keep){
     printbank();
@@ -48,7 +26,6 @@ void Bank::printbank(){
     cout << "3" << "\t" << "Deposit" << endl;
     cout << "4" << "\t" << "Transfer" << endl;
     cout << "5" << "\t" << "Close Account" << endl;
-    cout << "6" << "\t" << "Display Accounts" << endl;
 
     cout << num_options << "\t" << "Exit" << endl;
     cout << "choose an option from 1-" << num_options << endl;
@@ -77,9 +54,6 @@ void Bank::options(){
     }
     if (choose == 5){
         Close_Account();
-    }
-    if (choose == 6){
-        Print_accounts();
     }
     if (choose == num_options){
         Exit();
@@ -113,6 +87,23 @@ void Bank::Withdrawal(){
         }
     }
 }
+void Bank::TWithdrawal(int &ptransfer){
+    int v_index = get_user_indx();
+    if (v_index >= 0){
+        int withdraw_amount;
+        cout << "Total Balance: " << user_list[v_index].balance << endl;
+        cout << "Amount to Transfer: ";
+        cin >> withdraw_amount;
+        if (withdraw_amount < user_list[v_index].balance){
+            user_list[v_index].balance -= withdraw_amount;
+            cout << "Actual Total Balance: " << user_list[v_index].balance << endl;
+            ptransfer = withdraw_amount;
+        }
+        else{
+            cout << "Not enough balance" << endl;
+        }
+    }
+}
 //3. Deposit money into an user account
 void Bank::Deposit(){
     int v_index = get_user_indx();
@@ -125,9 +116,18 @@ void Bank::Deposit(){
         cout << "Actual Total Balance: " << user_list[v_index].balance << endl;
     } 
 }
+void Bank::TDeposit(int deposit_amount){
+    int v_index = get_user_indx();
+    if (v_index >= 0){
+        user_list[v_index].balance += deposit_amount;
+        cout << "Actual Total Balance: " << user_list[v_index].balance << endl;
+    } 
+}
 //4. Transfer money from account to account
 void Bank::Transfer(){
-    return;
+    int transfer;
+    TWithdrawal(transfer);
+    TDeposit(transfer);
 }
 //5. Delete a user
 void Bank::Close_Account(){
@@ -136,13 +136,7 @@ void Bank::Close_Account(){
         user_list.erase(user_list.begin() + v_index);
     }
 }
-//6. Print All Users
-void Bank::Print_accounts(){
-    for (auto element : user_list) {
-        cout << element.name << endl;
-    }
-}
-//7. End the "Bank interface"
+//6. End the "Bank interface"
 void Bank::Exit(){
     keep = false;
 }
@@ -181,7 +175,7 @@ int Bank::check_code(int code){
     return code;
 }
 
-int main (void){
-    Bank bank;
-    return 0;
-}
+// int main (void){
+//     Bank bank;
+//     return 0;
+// }
