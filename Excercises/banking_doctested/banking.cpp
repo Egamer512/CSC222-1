@@ -9,7 +9,6 @@ User::User(string n,int c, int b){
     balance = b;
 }
 
-
 Bank::Bank(){
    while (keep){
     printbank();
@@ -175,7 +174,7 @@ int Bank::check_code(int code){
     return code;
 }
 
-// int main (void){
-//     Bank bank;
-//     return 0;
-// }
+int main (void){
+    Bank bank;
+    return 0;
+}
