@@ -1,4 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+//Made by Luis Garces and Anar Khuderchuluun 
+//banking system
 #include "banking.h"  // Include the file where your Bank class is defined
 #include <doctest.h>
 

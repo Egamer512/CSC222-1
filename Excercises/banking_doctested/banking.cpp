@@ -1,3 +1,6 @@
+//Made by Luis Garces and Anar Khuderchuluun 
+//banking system
+
 #include "banking.h"
 
 int num_options = 7;

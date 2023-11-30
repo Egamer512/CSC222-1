@@ -80,3 +80,6 @@ int bin_search(const Card& card, const vector<Card>& deck, int l, int h) {
         return bin_search(card, deck, m+1, h);
     } 
 }
+struct Deck {
+    vector<Card> deck(52);
+};
