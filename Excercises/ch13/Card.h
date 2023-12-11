@@ -1,8 +1,9 @@
 #include <iostream>
-
 #include <vector>
 #include <string>
 using namespace std;
+int Deck_size = 52;
+
 struct Card
 {
     int suit, rank;
@@ -12,6 +13,7 @@ struct Card
     string to_string() const;
     bool is_greater(const Card& c2) const;
     bool equals(const Card& c2) const;
+    bool Card::equals(const Card& c2, const Card& c1) const;
 };
 
 Card::Card() {
@@ -35,6 +37,9 @@ string Card::to_string() const
 bool Card::equals(const Card& c2) const
 {
     return (rank == c2.rank && suit == c2.suit);
+}
+bool Card::equals(const Card& c2, const Card& c1) const{
+    return (c1.rank == c2.rank && c1.suit == c1.suit);
 }
 bool Card::is_greater(const Card& c2) const
 {
@@ -81,11 +86,19 @@ int bin_search(const Card& card, const vector<Card>& deck, int l, int h) {
     } 
 }
 struct Deck {
-    vector<Card> deck(52);
-    const vector<Card>& deck;
-    void shuffle()
+    vector<Card> deck(Deck_size);
     int bin_search(const Card& card, int l, int h);
 };
+int Deck::Deck(){
+    int i = 0;
+    for (int suit = 0; suit <= 3; suit++) {
+        for (int rank = 1; rank <= 13; rank++) {
+            deck[i].suit = suit;
+            deck[i].rank = rank;
+            i++;
+        }
+    }
+}
 void Deck::shuffle()
 {
     for (int i = 0; i < cards.size(); i++) {
@@ -100,10 +113,9 @@ int Deck::bin_search(const Card& card, int l, int h) {
         return m;
     } 
     if (deck[m].is_greater(card)){
-        return bin_search(card, deck, l, m-1);
+        return bin_search(card, l, m-1);
     }
     else{
-        return bin_search(card, deck, m+1, h);
-    }
-        
+        return bin_search(card, m+1, h);
+    }  
 }
