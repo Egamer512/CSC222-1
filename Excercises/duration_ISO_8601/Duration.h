@@ -9,4 +9,6 @@ class Duration{
     Duration(double s) : seconds(s) {}
 
     string to_string () const;
+    Duration operator + (Duration);
+
 };

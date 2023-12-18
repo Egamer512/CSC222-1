@@ -13,4 +13,7 @@ string Duration::to_string ()const{
     T.append(std::to_string(int(seconds)) + "S");
     return T;
 }
-Duration Duration::to_string ()const{
+Duration Duration::operator + (Duration T){
+    Duration Time(seconds + T.seconds);
+    return Time;
+}
