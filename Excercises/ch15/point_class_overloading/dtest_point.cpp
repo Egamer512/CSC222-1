@@ -17,7 +17,7 @@ TEST_CASE("test addition (+)"){
     CHECK(p1 == answer);
 }
 
-TEST_CASE("test multiplication between points(*)"){
+TEST_CASE("test multiplication between points (*)"){
     Point p1(2, 1);
     Point p2(3, 4);
     p1 = p1*p2;
@@ -34,14 +34,14 @@ TEST_CASE("test substaction (-)"){
     CHECK(p1 == answer);
 }
 
-TEST_CASE("test multiplication between point and number(*)"){
+TEST_CASE("test multiplication between point and number (*)"){
     Point p1(3, 4);
     p1 = p1*2;
     Point answer(6,8);
     CHECK(p1 == answer);
 }
 
-TEST_CASE("test multiplication between number and point(*)"){
+TEST_CASE("test multiplication between number and point (*)"){
     Point p1(3, 4);
     p1 = 2*p1;
     Point answer(6,8);
