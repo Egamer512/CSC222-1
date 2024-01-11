@@ -2,10 +2,16 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1000, 500), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(1000, 500), "Vampire Survivors?");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
-
+    sf::Texture playertexture;
+    sf::Sprite player;
+    if (!playertexture.loadFromFile("img/player1.png")){
+        return 1;
+    }
+    player.setTexture(playertexture);
+ 
     while (window.isOpen())
     {
         sf::Event event;
@@ -17,6 +23,8 @@ int main()
 
         window.clear();
         window.draw(shape);
+        window.draw(player);
+
         window.display();
     }
 
